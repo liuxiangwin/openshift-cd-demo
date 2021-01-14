@@ -334,14 +334,16 @@ objects:
             GOGS_HOSTNAME="gogs-$CICD_NAMESPACE.$HOSTNAME"
 
             if [ "${EPHEMERAL}" == "true" ] ; then
-              oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-template.yaml \
+              #oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-template.yaml \
+              oc new-app -f https://github.com/liuxiangwin/gogs/blob/master/gogs-template.yaml
               #oc new-app -f https://raw.githubusercontent.com/siamaksade/gogs-openshift-docker/master/openshift/gogs-template.yaml \
                   --param=GOGS_VERSION=0.11.34 \
                   --param=DATABASE_VERSION=9.6 \
                   --param=HOSTNAME=$GOGS_HOSTNAME \
                   --param=SKIP_TLS_VERIFY=true
             else
-              oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-persistent-template.yaml \
+              oc new-app -f https://github.com/liuxiangwin/gogs/blob/master/gogs-template-ephemeral.yaml
+              #oc new-app -f https://raw.githubusercontent.com/OpenShiftDemos/gogs-openshift-docker/master/openshift/gogs-persistent-template.yaml \
               #oc new-app -f https://raw.githubusercontent.com/siamaksade/gogs-openshift-docker/master/openshift/gogs-persistent-template.yaml \
                   --param=GOGS_VERSION=0.11.34 \
                   --param=DATABASE_VERSION=9.6 \
